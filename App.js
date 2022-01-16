@@ -10,10 +10,23 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+      screenOptions={{
+        tabBarStyle: { position: "absolute" },
+        tabBarActiveTintColor: "#2A364E",
+      }}
+    >
       <Tab.Navigator>
-        <Tab.Screen name="홈" component={HomeScreen} />
-        <Tab.Screen name="혜택" component={BenefitScreen} />
+        <Tab.Screen
+          name="홈"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Tab.Screen
+          name="혜택"
+          component={BenefitScreen}
+          options={{ headerShown: false }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
