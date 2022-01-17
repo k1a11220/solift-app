@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
 import BenefitScreen from "./screens/BenefitScreen";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 
@@ -12,10 +13,11 @@ export default function App() {
   return (
     <NavigationContainer
       screenOptions={{
-        tabBarStyle: { position: "absolute" },
+        tabBarStyle: {},
         tabBarActiveTintColor: "#2A364E",
       }}
     >
+      <SafeAreaView />
       <Tab.Navigator>
         <Tab.Screen
           name="홈"
