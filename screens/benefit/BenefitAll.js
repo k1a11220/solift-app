@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View } from "react-native";
 import styled from "styled-components";
-import CardList from "../../components/cardList";
+import CardList from "../../components/CardList";
 
 const Container = styled.View`
   padding: 0 4%;
