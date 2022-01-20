@@ -6,30 +6,41 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./screens/HomeScreen";
 import BenefitScreen from "./screens/BenefitScreen";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 const Tab = createBottomTabNavigator();
 
+const cache = new InMemoryCache();
+
+const client = new ApolloClient({
+  uri: "https://goonin-api.herokuapp.com/",
+  cache,
+  defaultOptions: { watchQuery: { fetchPolicy: "cache-and-network" } },
+});
+
 export default function App() {
   return (
-    <NavigationContainer
-      screenOptions={{
-        tabBarStyle: {},
-        tabBarActiveTintColor: "#2A364E",
-      }}
-    >
-      <SafeAreaView />
-      <Tab.Navigator>
-        <Tab.Screen
-          name="홈"
-          component={HomeScreen}
-          options={{ headerShown: false }}
-        />
-        <Tab.Screen
-          name="혜택"
-          component={BenefitScreen}
-          options={{ headerShown: false }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <ApolloProvider client={client}>
+      <NavigationContainer
+        screenOptions={{
+          tabBarStyle: {},
+          tabBarActiveTintColor: "#2A364E",
+        }}
+      >
+        <SafeAreaView />
+        <Tab.Navigator>
+          <Tab.Screen
+            name="홈"
+            component={HomeScreen}
+            options={{ headerShown: false }}
+          />
+          <Tab.Screen
+            name="혜택"
+            component={BenefitScreen}
+            options={{ headerShown: false }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </ApolloProvider>
   );
 }

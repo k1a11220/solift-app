@@ -6,6 +6,7 @@ const Container = styled.View`
   height: 92px;
   background-color: #f8f8f8;
   border-radius: 20px;
+  margin-bottom: 16px;
 `;
 
 const Wrapper = styled.View`

@@ -1,9 +1,14 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import * as React from "react";
-import { View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import BenefitAll from "./benefit/BenefitAll";
 import BenefitCulture from "./benefit/BenefitCulture";
+import styled from "styled-components/native";
+
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  background-color: #ffffff;
+`;
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -18,17 +23,9 @@ function Tabs() {
 
 const BenefitScreen = () => {
   return (
-    <>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          backgroundColor: "#FFFFFF",
-        }}
-      >
-        <Tabs />
-      </View>
-    </>
+    <Container>
+      <Tabs />
+    </Container>
   );
 };
 
