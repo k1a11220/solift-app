@@ -21,14 +21,18 @@ const client = new ApolloClient({
 export default function App() {
   return (
     <ApolloProvider client={client}>
+      <SafeAreaView />
       <NavigationContainer
         screenOptions={{
           tabBarStyle: {},
-          tabBarActiveTintColor: "#2A364E",
         }}
       >
-        <SafeAreaView />
-        <Tab.Navigator>
+        <Tab.Navigator
+          tabBarOptions={{
+            activeTintColor: "#2A364E", // 탭 활성
+            inactiveTintColor: "#CCCFD4", // 탭 비활성
+          }}
+        >
           <Tab.Screen
             name="홈"
             component={HomeScreen}
