@@ -3,7 +3,6 @@ import { View } from "react-native";
 import styled from "styled-components/native";
 
 const Container = styled.View`
-  height: 92px;
   background-color: #f8f8f8;
   border-radius: 20px;
   margin-bottom: 16px;
@@ -17,32 +16,38 @@ const Wrapper = styled.View`
   justify-content: space-between;
 `;
 
+const TextWrapper = styled.View`
+  width: 60%;
+`;
+
 const Title = styled.Text`
   color: #717989;
   padding-bottom: 7px;
+  overflow: hidden;
 `;
 
 const Subtitles = styled.Text`
   color: #4191fd;
   font-size: 16px;
   font-weight: 500;
+  overflow: hidden;
 `;
 
 const Thumbnail = styled.View`
   width: 100px;
-  height: 100%;
+  height: 60px;
   background-color: #ffffff;
   border-radius: 10px;
 `;
 
-const CardSm = () => {
+const CardSm = ({ title, subtitles, id, thumbnail }) => {
   return (
     <Container>
       <Wrapper>
-        <View>
-          <Title>롯데시네마</Title>
-          <Subtitles>2D영화 최대 3천원 할인</Subtitles>
-        </View>
+        <TextWrapper>
+          <Title numberOfLines={1}>{title}</Title>
+          <Subtitles numberOfLines={1}>{subtitles}</Subtitles>
+        </TextWrapper>
         <Thumbnail />
       </Wrapper>
     </Container>

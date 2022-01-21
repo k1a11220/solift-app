@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator();
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-  uri: "https://goonin-api.herokuapp.com/",
+  uri: "http://localhost:4000/",
   cache,
   defaultOptions: { watchQuery: { fetchPolicy: "cache-and-network" } },
 });

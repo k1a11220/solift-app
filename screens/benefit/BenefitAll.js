@@ -1,4 +1,6 @@
+import { gql, useQuery } from "@apollo/client";
 import * as React from "react";
+import { Text } from "react-native";
 import styled from "styled-components/native";
 import CardList from "../../components/CardList";
 
@@ -8,10 +10,26 @@ const Container = styled.View`
   background-color: #ffffff;
 `;
 
+const GET_BENEFIT = gql`
+  {
+    benefits {
+      id
+      name
+      mainBenefit
+      thumbnail
+    }
+  }
+`;
+
 const BenefitAll = () => {
+  const { loading, data } = useQuery(GET_BENEFIT);
   return (
     <Container>
-      <CardList />
+      {loading ? (
+        <Text>로딩중</Text>
+      ) : (
+        <CardList data={data.benefits} isInside={false} />
+      )}
     </Container>
   );
 };
