@@ -4,13 +4,13 @@ import styled from "styled-components/native";
 import Tab from "./Tab";
 
 const Container = styled.View`
-  border: 1px solid #f2f3f5;
+  border-bottom-color: #f2f3f5;
+  border-bottom-width: 1px;
 `;
 
 const TabWrapper = styled.View`
   flex-direction: row;
   padding-left: 24px;
-  margin-top: 24px;
 `;
 
 const BottomLine = styled.View`

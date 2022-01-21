@@ -1,9 +1,11 @@
 import * as React from "react";
-import { Text } from "react-native";
 import styled from "styled-components/native";
 import CardSm from "./CardSm";
 
-const Container = styled.FlatList``;
+const Container = styled.FlatList`
+  padding-top: 26px;
+  padding-bottom: 26px;
+`;
 
 const getList = ({ item }) => {
   return (
@@ -24,6 +26,7 @@ const CardList = ({ data, isInside }) => {
         <>{getList(data)}</>
       ) : (
         <Container
+          showsVerticalScrollIndicator={false}
           data={data}
           renderItem={getList}
           keyExtractor={(item) => String(item.id)}

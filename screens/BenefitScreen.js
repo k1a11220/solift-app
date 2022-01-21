@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled from "styled-components/native";
 import TabIndicator from "../components/navigation/TabIndicator";
+import { Header, Title } from "../styles/styles";
 
 const Container = styled.View`
   flex: 1;
@@ -11,6 +12,7 @@ const Container = styled.View`
 const BenefitScreen = () => {
   return (
     <Container>
+      <Title>혜택</Title>
       <TabIndicator />
     </Container>
   );

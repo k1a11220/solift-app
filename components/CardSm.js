@@ -29,11 +29,11 @@ const Title = styled.Text`
 const Subtitles = styled.Text`
   color: #4191fd;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   overflow: hidden;
 `;
 
-const Thumbnail = styled.View`
+const Thumbnail = styled.Image`
   width: 100px;
   height: 60px;
   background-color: #ffffff;
@@ -48,7 +48,7 @@ const CardSm = ({ title, subtitles, id, thumbnail }) => {
           <Title numberOfLines={1}>{title}</Title>
           <Subtitles numberOfLines={1}>{subtitles}</Subtitles>
         </TextWrapper>
-        <Thumbnail />
+        <Thumbnail source={{ uri: thumbnail }} />
       </Wrapper>
     </Container>
   );
