@@ -1,6 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
+import { Image } from "react-native";
+import BenefitIcon from "../../assets/BenefitIcon";
+import HomeIcon from "../../assets/HomeIcon";
 import BenefitScreen from "../../screens/BenefitScreen";
 import HomeScreen from "../../screens/HomeScreen";
 
@@ -14,20 +17,32 @@ const BottomTabNav = () => {
       }}
     >
       <Tab.Navigator
-        tabBarOptions={{
-          activeTintColor: "#2A364E", // 탭 활성
-          inactiveTintColor: "#CCCFD4", // 탭 비활성
+        screenOptions={{
+          tabBarActiveTintColor: "#2A364E",
+          tabBarInactiveTintColor: "#CCCFD4",
         }}
       >
         <Tab.Screen
           name="홈"
           component={HomeScreen}
-          options={{ headerShown: false }}
+          options={{
+            title: "홈",
+            headerShown: false,
+            tabBarIcon: ({ size, focused, color }) => {
+              return <HomeIcon fillColor={color} />;
+            },
+          }}
         />
         <Tab.Screen
           name="혜택"
           component={BenefitScreen}
-          options={{ headerShown: false }}
+          options={{
+            title: "혜택",
+            headerShown: false,
+            tabBarIcon: ({ size, focused, color }) => {
+              return <BenefitIcon fillColor={color} />;
+            },
+          }}
         />
       </Tab.Navigator>
     </NavigationContainer>
