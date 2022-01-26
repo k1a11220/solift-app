@@ -1,12 +1,19 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
+import { useState } from "react";
 import { View, StyleSheet, Text, Animated, Dimensions } from "react-native";
 import CardSm from "../../components/CardSm";
 
 const window = Dimensions.get("window");
 
 function BenefitList(props) {
-  const { headerHeight, tabBarHeight, tabRoute, listArrRef, isTabFocused } =
-    props;
+  const {
+    data,
+    headerHeight,
+    tabBarHeight,
+    tabRoute,
+    listArrRef,
+    isTabFocused,
+  } = props;
 
   const renderItem = useCallback(({ item, index }) => {
     return (
@@ -17,6 +24,14 @@ function BenefitList(props) {
         thumbnail={item.thumbnail}
         margin={true}
       />
+      //   <View
+      //     style={{
+      //       ...styles.itemContainer,
+      //       backgroundColor: index % 2 === 0 ? "#587498" : "#E86850",
+      //     }}
+      //   >
+      //     <Text style={styles.itemText}>{item.name}</Text>
+      //   </View>
     );
   }, []);
 
@@ -42,7 +57,7 @@ function BenefitList(props) {
             };
           }
         }}
-        data={props.data}
+        data={data}
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         contentContainerStyle={{

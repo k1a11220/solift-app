@@ -1,5 +1,6 @@
 import * as React from "react";
 import { View } from "react-native";
+import { StyleSheet } from "react-native";
 import styled from "styled-components/native";
 
 const Container = styled.View`
@@ -42,15 +43,29 @@ const Thumbnail = styled.Image`
 const CardSm = ({ title, subtitles, id, thumbnail, margin }) => {
   return (
     <Container margin={margin}>
-      <Wrapper>
+      <View style={styles.wrapper}>
         <TextWrapper>
           <Title numberOfLines={1}>{title}</Title>
           <Subtitles numberOfLines={1}>{subtitles}</Subtitles>
         </TextWrapper>
         <Thumbnail source={{ uri: thumbnail }} />
-      </Wrapper>
+      </View>
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    flexDirection: "row",
+    paddingStart: 26,
+    paddingEnd: 16,
+    paddingTop: 16,
+    paddingBottom: 16,
+    alignItems: "center",
+    justifyContent: "space-between",
+    height: 90,
+  },
+});
 
 export default CardSm;

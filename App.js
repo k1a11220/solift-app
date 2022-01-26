@@ -8,7 +8,7 @@ import BottomTabNav from "./components/navigation/BottomTabNav";
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  uri: "https://goonin-api.herokuapp.com/",
   cache,
   defaultOptions: { watchQuery: { fetchPolicy: "cache-and-network" } },
 });
