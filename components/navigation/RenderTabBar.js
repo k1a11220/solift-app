@@ -1,20 +1,8 @@
 import React, { useCallback } from "react";
-import { View, Text } from "react-native";
-import { TouchableOpacity } from "react-native";
 import { Animated, StyleSheet } from "react-native";
-import { TabView } from "react-native-tab-view";
 
-const TABBAR_HEIGHT = 60;
-
-const TabIndicator = ({
-  tabIndex,
-  tabRoutes,
-  renderScene,
-  onIndexChange,
-  onTabPress,
-  tabBarTranslateY,
-}) => {
-  const renderTabBar = useCallback((props) => {
+export const renderTabBar = useCallback(
+  (props) => {
     return (
       <Animated.View
         style={[
@@ -41,17 +29,9 @@ const TabIndicator = ({
         })}
       </Animated.View>
     );
-  });
-
-  return (
-    <TabView
-      navigationState={{ index: tabIndex, routes: tabRoutes }}
-      renderScene={renderScene}
-      renderTabBar={renderTabBar}
-      onIndexChange={onIndexChange}
-    />
-  );
-};
+  },
+  [headerHeight]
+);
 
 const styles = StyleSheet.create({
   rootContainer: {
@@ -65,7 +45,7 @@ const styles = StyleSheet.create({
   collapsibleTabBar: {
     flexDirection: "row",
     alignItems: "center",
-    height: 60,
+    height: TABBAR_HEIGHT,
     backgroundColor: "#FFFFFF",
     zIndex: 1,
     paddingLeft: 24,
@@ -83,5 +63,3 @@ const styles = StyleSheet.create({
     color: "#CCCFD4",
   },
 });
-
-export default TabIndicator;

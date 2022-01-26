@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 const Container = styled.View`
   background-color: #f8f8f8;
   border-radius: 20px;
-  margin-bottom: 16px;
+  margin: ${(props) => (props.margin ? "0 24px 16px 24px" : "0 0 16px 0")};
 `;
 
 const Wrapper = styled.View`
@@ -14,6 +14,7 @@ const Wrapper = styled.View`
   padding: 16px 16px 16px 26px;
   align-items: center;
   justify-content: space-between;
+  height: 90px;
 `;
 
 const TextWrapper = styled.View`
@@ -23,26 +24,24 @@ const TextWrapper = styled.View`
 const Title = styled.Text`
   color: #717989;
   padding-bottom: 7px;
-  overflow: hidden;
 `;
 
 const Subtitles = styled.Text`
   color: #4191fd;
   font-size: 16px;
   font-weight: 600;
-  overflow: hidden;
 `;
 
 const Thumbnail = styled.Image`
   width: 100px;
-  height: 60px;
+  height: 100%;
   background-color: #ffffff;
   border-radius: 10px;
 `;
 
-const CardSm = ({ title, subtitles, id, thumbnail }) => {
+const CardSm = ({ title, subtitles, id, thumbnail, margin }) => {
   return (
-    <Container>
+    <Container margin={margin}>
       <Wrapper>
         <TextWrapper>
           <Title numberOfLines={1}>{title}</Title>

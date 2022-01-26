@@ -1,21 +1,27 @@
-import * as React from "react";
-import styled from "styled-components/native";
-import TabIndicator from "../components/navigation/TabIndicator";
-import { Title } from "../styles/styles";
+import { gql, useQuery } from "@apollo/client";
+import React, { useState } from "react";
+import CollapsibleTabview from "../components/CollapsibleTabview";
 
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  background-color: #ffffff;
+const GET_BENEFIT = gql`
+  {
+    benefits {
+      id
+      name
+      mainBenefit
+      thumbnail
+    }
+  }
 `;
 
-const BenefitScreen = () => {
-  return (
-    <Container>
-      <Title>혜택</Title>
-      <TabIndicator />
-    </Container>
-  );
-};
+function BenefitScreen() {
+  const { loading, data } = useQuery(GET_BENEFIT);
+  const [tabRoutes, setTabRoutes] = useState([
+    { key: "screen1", title: "전체" },
+    { key: "screen2", title: "문화" },
+    { key: "screen3", title: "여행" },
+  ]);
+
+  return <CollapsibleTabview tabRoutes={tabRoutes} data={data.benefits} />;
+}
 
 export default BenefitScreen;

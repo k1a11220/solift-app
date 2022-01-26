@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 
 export const Header = styled.View`
-  min-height: ${(props) => (props.button === true ? "0" : "170px")};
+  min-height: ${(props) => (props.button === true ? "0" : "64px")};
 `;
 
 export const Title = styled.Text`
