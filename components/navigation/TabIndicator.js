@@ -1,12 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import { TouchableOpacity } from "react-native";
 import { Animated, StyleSheet } from "react-native";
 import { TabView } from "react-native-tab-view";
 import Tab from "./Tab";
 import styled from "styled-components/native";
-
-const TABBAR_HEIGHT = 60;
 
 const TabWrapper = styled.ScrollView`
   flex-direction: row;
@@ -23,9 +19,11 @@ const TabIndicator = ({
   tabRoutes,
   renderScene,
   onIndexChange,
+  navigation,
   onTabPress,
   tabBarTranslateY,
 }) => {
+  console.log(navigation);
   const renderTabBar = useCallback((props) => {
     const [translateValue] = useState(new Animated.Value(0));
     const [width, setWidth] = useState(0);
@@ -58,22 +56,13 @@ const TabIndicator = ({
           {props.navigationState.routes.map((route, idx) => {
             const label = route.title;
             const isFocused = route.key === tabRoutes[tabIndex].key;
-            const onPress = () => {
-              const event = props.jumpTo.emit({
-                type: "tabPress",
-                target: route.key,
-                canPreventDefault: true,
-              });
-              if (!isFocused && !event.defaultPrevented) {
-                navigation.navigate(route.title);
-              }
-            };
             return (
               <Tab
                 isFocused={isFocused}
                 key={`tab_${idx}`}
                 label={label}
-                onPress={onPress}
+                onTabPress={onTabPress}
+                idx={idx}
                 setToValue={setToValue}
                 setWidth={setWidth}
               />

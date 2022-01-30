@@ -18,8 +18,10 @@ export default function Tab({
   isFocused,
   label,
   onPress,
+  onTabPress,
   setToValue,
   setWidth,
+  idx,
 }) {
   const [layout, setLayout] = useState(null);
   useEffect(() => {
@@ -35,7 +37,13 @@ export default function Tab({
   };
 
   return (
-    <TabButton isFocused={isFocused} onPress={onPress} onLayout={onLayout}>
+    <TabButton
+      isFocused={isFocused}
+      onPress={() => {
+        onTabPress(idx);
+      }}
+      onLayout={onLayout}
+    >
       <TabText isFocused={isFocused}>{label}</TabText>
     </TabButton>
   );

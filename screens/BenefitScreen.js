@@ -16,7 +16,7 @@ const GET_BENEFIT = gql`
 
 const LoadingData = new Array(10).fill(0);
 
-function BenefitScreen() {
+function BenefitScreen({ navigation }) {
   const { loading, data } = useQuery(GET_BENEFIT);
   const [tabRoutes, setTabRoutes] = useState([
     { key: "screen1", title: "전체" },
@@ -29,7 +29,11 @@ function BenefitScreen() {
       {data === undefined ? (
         <Text>로딩중</Text>
       ) : (
-        <CollapsibleTabview tabRoutes={tabRoutes} data={data.benefits} />
+        <CollapsibleTabview
+          tabRoutes={tabRoutes}
+          data={data.benefits}
+          navigation={navigation}
+        />
       )}
     </>
   );

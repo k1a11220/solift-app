@@ -6,7 +6,7 @@ import TabIndicator from "./navigation/TabIndicator";
 
 const TABBAR_HEIGHT = 60;
 
-const CollapsibleTabview = ({ tabRoutes, data }) => {
+const CollapsibleTabview = ({ tabRoutes, data, navigation }) => {
   const [headerHeight, setHeaderHeight] = useState(0);
   const [tabIndex, setTabIndex] = useState(0);
   const tabIndexRef = useRef(0);
@@ -116,6 +116,7 @@ const CollapsibleTabview = ({ tabRoutes, data }) => {
             listArrRef={listArrRef}
             isTabFocused={isFocused}
             data={data}
+            navigation={navigation}
           />
         </>
       );
@@ -131,6 +132,7 @@ const CollapsibleTabview = ({ tabRoutes, data }) => {
           renderScene={renderScene}
           onIndexChange={onTabIndexChange}
           onTabPress={onTabPress}
+          navigation={navigation}
           tabBarTranslateY={tabBarTranslateY}
         />
       ) : null}

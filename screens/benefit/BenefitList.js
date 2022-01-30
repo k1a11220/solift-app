@@ -15,6 +15,8 @@ function BenefitList(props) {
     isTabFocused,
   } = props;
 
+  const { navigation } = props;
+
   const renderItem = useCallback(({ item, index }) => {
     return (
       <CardSm
@@ -23,6 +25,7 @@ function BenefitList(props) {
         id={item.id}
         thumbnail={item.thumbnail}
         margin={true}
+        onPress={() => navigation.navigate("Benefit", { benefit: item })}
       />
       //   <View
       //     style={{

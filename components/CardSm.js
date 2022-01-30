@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { StyleSheet } from "react-native";
 import styled from "styled-components/native";
 
-const Container = styled.View`
+const Container = styled.Pressable`
   background-color: #f8f8f8;
   border-radius: 20px;
   margin: ${(props) => (props.margin ? "0 24px 16px 24px" : "0 0 16px 0")};
@@ -40,9 +40,9 @@ const Thumbnail = styled.Image`
   border-radius: 10px;
 `;
 
-const CardSm = ({ title, subtitles, id, thumbnail, margin }) => {
+const CardSm = ({ title, subtitles, id, thumbnail, margin, onPress }) => {
   return (
-    <Container margin={margin}>
+    <Container margin={margin} onPress={onPress}>
       <View style={styles.wrapper}>
         <TextWrapper>
           <Title numberOfLines={1}>{title}</Title>
