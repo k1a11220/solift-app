@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     zIndex: 1,
     paddingLeft: 24,
+    borderBottomColor: "#F2F3F5",
   },
   collapsibleTabBarButton: {
     paddingRight: 20,

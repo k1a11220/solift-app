@@ -1,10 +1,22 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { Animated, StyleSheet } from "react-native";
 import { TabView } from "react-native-tab-view";
+import Tab from "./Tab";
+import styled from "styled-components/native";
 
 const TABBAR_HEIGHT = 60;
+
+const TabWrapper = styled.ScrollView`
+  flex-direction: row;
+`;
+
+const BottomLine = styled.View`
+  background-color: #2a364e;
+  height: 2px;
+  width: 100%;
+`;
 
 const TabIndicator = ({
   tabIndex,
@@ -15,6 +27,22 @@ const TabIndicator = ({
   tabBarTranslateY,
 }) => {
   const renderTabBar = useCallback((props) => {
+    const [translateValue] = useState(new Animated.Value(0));
+    const [width, setWidth] = useState(0);
+    const [toValue, setToValue] = useState(0);
+
+    useEffect(() => {
+      Animated.spring(translateValue, {
+        toValue,
+        damping: 10,
+        mass: 1,
+        stiffness: 100,
+        overshootClamping: true,
+        restDisplacementThreshold: 0.001,
+        restSpeedThreshold: 0.001,
+        useNativeDriver: true,
+      }).start();
+    }, [props.navigationState, translateValue, toValue]);
     return (
       <Animated.View
         style={[
@@ -22,23 +50,44 @@ const TabIndicator = ({
           { transform: [{ translateY: tabBarTranslateY }] },
         ]}
       >
-        {props.navigationState.routes.map((route, idx) => {
-          return (
-            <TouchableOpacity
-              style={styles.collapsibleTabBarButton}
-              key={idx}
-              onPress={() => {
-                onTabPress(idx);
-              }}
-            >
-              <View style={styles.collapsibleTabBarLabelContainer}>
-                <Text style={styles.collapsibleTabBarLabelText}>
-                  {route.title}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
-        })}
+        <TabWrapper
+          contentContainerStyle={{ flexGrow: 1, alignItems: "flex-end" }}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+        >
+          {props.navigationState.routes.map((route, idx) => {
+            const label = route.title;
+            const isFocused = route.key === tabRoutes[tabIndex].key;
+            const onPress = () => {
+              const event = props.jumpTo.emit({
+                type: "tabPress",
+                target: route.key,
+                canPreventDefault: true,
+              });
+              if (!isFocused && !event.defaultPrevented) {
+                navigation.navigate(route.title);
+              }
+            };
+            return (
+              <Tab
+                isFocused={isFocused}
+                key={`tab_${idx}`}
+                label={label}
+                onPress={onPress}
+                setToValue={setToValue}
+                setWidth={setWidth}
+              />
+            );
+          })}
+        </TabWrapper>
+
+        <BottomLine
+          as={Animated.View}
+          style={{
+            transform: [{ translateX: translateValue }],
+            width,
+          }}
+        />
       </Animated.View>
     );
   });
@@ -63,15 +112,18 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   collapsibleTabBar: {
-    flexDirection: "row",
-    alignItems: "center",
+    justifyContent: "flex-end",
     height: 60,
     backgroundColor: "#FFFFFF",
     zIndex: 1,
     paddingLeft: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: "#F2F3F5",
   },
   collapsibleTabBarButton: {
-    paddingRight: 20,
+    marginRight: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: "#2a364e",
   },
   collapsibleTabBarLabelContainer: {
     paddingTop: 24,

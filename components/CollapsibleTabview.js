@@ -104,18 +104,20 @@ const CollapsibleTabview = ({ tabRoutes, data }) => {
       const isFocused = route.key === tabRoutes[tabIndex].key;
 
       return (
-        <BenefitList
-          headerHeight={headerHeight}
-          tabBarHeight={TABBAR_HEIGHT}
-          scrollY={scrollY}
-          onMomentumScrollBegin={onMomentumScrollBegin}
-          onMomentumScrollEnd={onMomentumScrollEnd}
-          onScrollEndDrag={onScrollEndDrag}
-          tabRoute={route}
-          listArrRef={listArrRef}
-          isTabFocused={isFocused}
-          data={data}
-        />
+        <>
+          <BenefitList
+            headerHeight={headerHeight}
+            tabBarHeight={TABBAR_HEIGHT}
+            scrollY={scrollY}
+            onMomentumScrollBegin={onMomentumScrollBegin}
+            onMomentumScrollEnd={onMomentumScrollEnd}
+            onScrollEndDrag={onScrollEndDrag}
+            tabRoute={route}
+            listArrRef={listArrRef}
+            isTabFocused={isFocused}
+            data={data}
+          />
+        </>
       );
     },
     [headerHeight, tabIndex]
@@ -176,6 +178,10 @@ const styles = StyleSheet.create({
   collapsibleTabBarLabelText: {
     fontSize: 18,
     color: "#CCCFD4",
+  },
+  gap: {
+    width: "100%",
+    height: 26,
   },
 });
 

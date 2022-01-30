@@ -62,6 +62,7 @@ function BenefitList(props) {
         keyExtractor={keyExtractor}
         contentContainerStyle={{
           paddingTop: headerHeight,
+          marginTop: 26,
           minHeight: window.height + headerHeight - tabBarHeight,
         }}
         scrollEventThrottle={16}

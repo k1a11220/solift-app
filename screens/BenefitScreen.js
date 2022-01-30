@@ -18,22 +18,18 @@ const LoadingData = new Array(10).fill(0);
 
 function BenefitScreen() {
   const { loading, data } = useQuery(GET_BENEFIT);
-  const [fuck, setFuck] = useState(undefined);
   const [tabRoutes, setTabRoutes] = useState([
     { key: "screen1", title: "전체" },
     { key: "screen2", title: "문화" },
-    { key: "screen3", title: "여행" },
+    { key: "screen3", title: "식당" },
+    { key: "screen4", title: "여행&액티비티" },
   ]);
-  useEffect(() => {
-    setFuck(data);
-    console.log(loading, data);
-  });
   return (
     <>
-      {fuck === undefined ? (
+      {data === undefined ? (
         <Text>로딩중</Text>
       ) : (
-        <CollapsibleTabview tabRoutes={tabRoutes} data={fuck.benefits} />
+        <CollapsibleTabview tabRoutes={tabRoutes} data={data.benefits} />
       )}
     </>
   );
