@@ -23,7 +23,6 @@ const TabIndicator = ({
   onTabPress,
   tabBarTranslateY,
 }) => {
-  console.log(navigation);
   const renderTabBar = useCallback((props) => {
     const [translateValue] = useState(new Animated.Value(0));
     const [width, setWidth] = useState(0);

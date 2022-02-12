@@ -40,6 +40,7 @@ const BottomTabNav = () => {
           },
           tabBarShowLabel: false,
         }}
+        initialRouteName="홈"
       >
         <Tab.Screen
           name="홈"

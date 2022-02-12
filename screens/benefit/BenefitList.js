@@ -1,6 +1,13 @@
 import React, { useCallback, useEffect } from "react";
 import { useState } from "react";
-import { View, StyleSheet, Text, Animated, Dimensions } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  Animated,
+  Dimensions,
+  Button,
+} from "react-native";
 import CardSm from "../../components/CardSm";
 
 const window = Dimensions.get("window");
@@ -25,7 +32,7 @@ function BenefitList(props) {
         id={item.id}
         thumbnail={item.thumbnail}
         margin={true}
-        onPress={() => navigation.navigate("Benefit", { benefit: item })}
+        onPress={() => navigation.navigate("BenefitDetail", { id: item.id })}
       />
       //   <View
       //     style={{
@@ -82,6 +89,17 @@ function BenefitList(props) {
         onScrollEndDrag={props.onScrollEndDrag}
         bounces={false}
       />
+    </View>
+  );
+}
+
+function BenefitDetailScreen({ route, navigation }) {
+  /* 2. Get the param */
+  console.log(route);
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Details Screen</Text>
+      <Button title="Go to Home" onPress={() => navigation.navigate("홈")} />
     </View>
   );
 }
